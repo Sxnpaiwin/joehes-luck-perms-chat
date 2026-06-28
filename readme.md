@@ -1,65 +1,64 @@
-```
-  _     ____   ____ 
- | |   |  _ \ / ___|
- | |   | |_) | |    
- | |___|  __/| |___ 
- |_____|_|    \____|
-                    
+<div align="center">
+
+```text
+       _                 _                 _      _____   _____ 
+      | |               | |               | |    |  __ \ / ____|
+      | | ___   ___  ___| |__   ___  ___  | |    | |__) | |     
+  _   | |/ _ \ / _ \/ __| '_ \ / _ \/ __| | |    |  ___/| |     
+ | |__| | (_) |  __/\__ \ | | |  __/\__ \ | |____| |    | |____ 
+  \____/ \___/ \___||___/_| |_|\___||___/ |______|_|     \_____|
 ```
 
-# joehes-luck-perms-chat ＼(≧▽≦)／
+# JoehesLPC
+**A modern, highly-optimized LuckPerms Chat Formatter natively targeting Minecraft 1.21+**
 
-A modern, highly-optimized **LuckPerms Chat Formatter** natively targeting Minecraft **1.21+** (including `1.21.11`) with critical formatting and style bugfixes.
+[![Minecraft Support](https://img.shields.io/badge/Minecraft-1.21+-red?style=for-the-badge&logo=minecraft&logoColor=white)](#)
+[![Java Version](https://img.shields.io/badge/Java-25%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](#)
+[![License](https://img.shields.io/github/license/Sxnpaiwin/joehes-luck-perms-chat?style=for-the-badge&color=blue)](#)
+[![Modrinth Page](https://img.shields.io/badge/Modrinth-JoehesLPC-00C853?style=for-the-badge&logo=modrinth&logoColor=white)](https://modrinth.com/user/Sxnpaiwin)
 
 ---
 
-## 🚀 Key Improvements & Fixes (✿◕‿◕)
+</div>
 
-- **1.21+ Compatibility**: Optimized dependencies to target `1.21` Paper APIs, ensuring forward-compatibility with all newer Minecraft versions.
-- **PlaceholderAPI Color Resolution**: Resolved issues where legacy colors and custom hex codes expanded from PAPI placeholders (like custom group suffixes) would print as raw, unformatted text in chat.
-- **Style Leakage Fixes**: Fixed a critical Minecraft rendering bug where styles like `&k` (obfuscated/enchanted text), bold `&l`, or italic `&o` would leak past color changes and corrupt player names. Pre-pending resets to all color codes ensures correct Minecraft legacy color formatting behavior in MiniMessage.
+## 🚀 Key Improvements & Patches
+
+*   **🔒 Complete Style Leakage Protection**: Solved a critical Minecraft rendering bug where styles like `&k` (obfuscated/enchanted text), bold `&l`, or italic `&o` from prefixes/suffixes would leak past color changes and corrupt subsequent player names or text.
+*   **🔌 PlaceholderAPI Color Resolution**: Resolved issues where legacy colors and custom hex codes expanded from PAPI placeholders (such as LuckPerms group suffixes) would display as raw, unformatted text in chat.
+*   **⚡ Forward-Compatible API**: Restructured to compile natively on Paper `1.21` APIs, ensuring fully stable out-of-the-box forward compatibility with all newer server releases.
 
 ---
 
-## 🧩 Compatibility (｀・ω・´)
+## 🧩 Compatibility
 
-| Component | Support Status |
+| Component | Target / Requirement |
 |---|---|
-| **Minecraft** | `1.21` and all newer versions (`1.21+`) |
-| **Server Platform** | Paper, Folia, or Spigot |
-| **Java Version** | `25+` |
+| **Minecraft Server** | `1.21` and all newer versions (`1.21+`) |
+| **Supported Software** | Paper (Recommended), Folia, or Spigot |
+| **Java Environment** | `25+` |
 
 ---
 
-## 🔧 Requirements (◕‿◕)
+## 🔧 Requirements
 
-- [LuckPerms](https://luckperms.net/) *(Required)* – Permissions plugin
-- [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) *(Optional)* – Additional placeholders
-
----
-
-## ✅ Features (o^▽^o)
-
-- **MiniMessage Format**: Complete MiniMessage support with group- and track-specific formats.
-- **Social Upgrades**: Mention pings, clickable links, and customizable emoji shortcuts (e.g. `:heart:` → ❤).
-- **Integrated Moderation**: Toggleable anti-spam cooldown, repeated-message blocker, caps filter, profanity filter, and anti-advertising.
-- **Integrated Mutes**: Full mute system with `/joeheslpc mute <player>` supporting custom durations.
+*   [LuckPerms](https://luckperms.net/) *(Required)* – Core permissions and metadata provider.
+*   [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) *(Optional)* – To integrate extra placeholder variables inside chat formats.
 
 ---
 
-## ⌨️ Commands & Permissions (✿◠‿◠)
+## ✅ Features
 
-| Command | Permission | Description |
-|---|---|---|
-| `/joeheslpc reload` | `joeheslpc.reload` | Reloads the configuration |
-| `/joeheslpc version` | – | Shows the current installed version |
-| `/joeheslpc help` | – | Displays available commands |
-| `/joeheslpc mute <player> [duration]` | `joeheslpc.mute` | Mutes a player (e.g. `10m`, `2h`, or permanent) |
-| `/joeheslpc unmute <player>` | `joeheslpc.mute` | Unmutes a player |
+*   **💬 Modern Chat Formatting**: Full [MiniMessage](https://docs.advntr.dev/minimessage/format.html) rendering engine with group and track formats.
+*   **👥 Social System**: Interactive `@Mention` pings (sound/action-bar on Paper), clickable `openUrl` links, and configurable text-to-glyph emoji shortcuts (e.g., `:heart:` → ❤).
+*   **🛡️ Moderation Toolkit**: Anti-spam cooldowns, repeated-message blockers, caps filters, profanity filters, and anti-advertising safeguards.
+*   **🔇 Integrated Mute System**: Fully managed local temp-mutes and permanent mutes with `/jlpc mute`.
 
 ---
 
-## ⚙️ Configuration (`config.yml`) (✿ >‿<)
+## 📂 Configuration & Commands
+
+<details>
+<summary><b>📂 Click to expand default <code>config.yml</code></b></summary>
 
 ```yaml
 # Main chat format (MiniMessage!)
@@ -74,7 +73,7 @@ group-formats:
 track-formats:
 #  staff_track: "<gold>[Staff]</gold> {name}<dark_gray> »<reset> {message}"
 
-# Enable the [item] placeholder
+# Enable the [item] placeholder (shows held item details on hover)
 use-item-placeholder: true
 
 # Allow <gradient> / <rainbow> for players with joeheslpc.chatcolor
@@ -90,11 +89,30 @@ update-checker: true
 reload-message: "<green>Reloaded JoehesLPC configuration!"
 ```
 
+</details>
+
+<details>
+<summary><b>⌨️ Click to expand Commands & Permissions</b></summary>
+
+| Command | Permission | Description |
+|---|---|---|
+| `/jlpc reload` | `joeheslpc.reload` | Reloads the configuration |
+| `/jlpc version` | – | Shows the current installed version |
+| `/jlpc help` | – | Displays available commands |
+| `/jlpc mute <player> [duration]` | `joeheslpc.mute` | Mutes a player (e.g. `10m`, `2h`, or permanent) |
+| `/jlpc unmute <player>` | `joeheslpc.mute` | Unmutes a player |
+
+*Note: The command supports aliases `/lpc` and `/joeheslpc` for legacy compatibility.*
+
+</details>
+
 ---
 
-## 🛠️ Building (￣▽￣)
+## 🛠️ Building & Compilation
+
+Requires **JDK 25** to compile.
 
 ```bash
 ./gradlew shadowJar
-# output: build/libs/JoehesLPC-1.21.11.jar
+# Compiled jar will be located at build/libs/JoehesLPC-1.21.11.jar
 ```
