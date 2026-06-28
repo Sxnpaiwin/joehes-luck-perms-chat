@@ -21,15 +21,9 @@
 
 </div>
 
-## 🚀 Key Improvements & Patches
+## 🧩 Compatibility (｀・ω・´)
 
-*   **🔒 Complete Style Leakage Protection**: Solved a critical Minecraft rendering bug where styles like `&k` (obfuscated/enchanted text), bold `&l`, or italic `&o` from prefixes/suffixes would leak past color changes and corrupt subsequent player names or text.
-*   **🔌 PlaceholderAPI Color Resolution**: Resolved issues where legacy colors and custom hex codes expanded from PAPI placeholders (such as LuckPerms group suffixes) would display as raw, unformatted text in chat.
-*   **⚡ Forward-Compatible API**: Restructured to compile natively on Paper `1.21` APIs, ensuring fully stable out-of-the-box forward compatibility with all newer server releases.
-
----
-
-## 🧩 Compatibility
+| Component | Target / Requirement |
 
 | Component | Target / Requirement |
 |---|---|
@@ -39,14 +33,14 @@
 
 ---
 
-## 🔧 Requirements
+## 🔧 Requirements (◕‿◕)
 
 *   [LuckPerms](https://luckperms.net/) *(Required)* – Core permissions and metadata provider.
 *   [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) *(Optional)* – To integrate extra placeholder variables inside chat formats.
 
 ---
 
-## ✅ Features
+## ✅ Features (o^▽^o)
 
 *   **💬 Modern Chat Formatting**: Full [MiniMessage](https://docs.advntr.dev/minimessage/format.html) rendering engine with group and track formats.
 *   **👥 Social System**: Interactive `@Mention` pings (sound/action-bar on Paper), clickable `openUrl` links, and configurable text-to-glyph emoji shortcuts (e.g., `:heart:` → ❤).
@@ -55,7 +49,7 @@
 
 ---
 
-## 📂 Configuration & Commands
+## 📂 Configuration & Commands (✿◠‿◠)
 
 <details>
 <summary><b>📂 Click to expand default <code>config.yml</code></b></summary>
@@ -108,7 +102,7 @@ reload-message: "<green>Reloaded JoehesLPC configuration!"
 
 ---
 
-## 🛠️ Building & Compilation
+## 🛠️ Building & Compilation (￣▽￣)
 
 Requires **JDK 25** to compile.
 
