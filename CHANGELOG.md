@@ -15,7 +15,7 @@ Native Folia support with region-aware scheduling while retaining full Paper/Spi
   - `PaperSchedulerImpl` using `GlobalRegionScheduler`, `AsyncScheduler` and `EntityScheduler`.
   - `BukkitSchedulerImpl` fallback for plain Spigot/Bukkit.
   - Runtime platform detection via `Schedulers.create(...)`.
-- Folia detection in `LPC` with dedicated log output.
+- Folia detection in `JoehesLPC` with dedicated log output.
 - `onDisable` cancels all scheduled tasks cleanly.
 
 ### Changed

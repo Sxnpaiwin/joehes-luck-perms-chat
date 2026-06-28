@@ -9,7 +9,7 @@
 
 # joehes-luck-perms-chat ＼(≧▽≦)／
 
-A modern, highly-optimized fork of **JoehesLPC (LuckPerms Chat Formatter)** natively targeting Minecraft **1.21+** (including `1.21.11`) with critical formatting and style bugfixes.
+A modern, highly-optimized **LuckPerms Chat Formatter** natively targeting Minecraft **1.21+** (including `1.21.11`) with critical formatting and style bugfixes.
 
 ---
 
