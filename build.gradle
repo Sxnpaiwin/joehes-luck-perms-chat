@@ -3,7 +3,7 @@ plugins {
     id 'com.gradleup.shadow' version '8.3.11'
 }
 
-group = 'de.ayont'
+group = 'de.joehe'
 version = project.findProperty('project_version') ?: '4.0.0'
 
 repositories {
@@ -76,7 +76,7 @@ processResources {
 }
 
 shadowJar {
-    archiveFileName.set("LPC-${project.version}.jar")
+    archiveFileName.set("JoehesLPC-${project.version}.jar")
     mergeServiceFiles {
         exclude 'META-INF/*.DSA'
         exclude 'META-INF/*.RSA'

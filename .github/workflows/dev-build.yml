@@ -55,7 +55,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: LPC-dev-${{ steps.commit.outputs.hash }}
+          name: JoehesLPC-dev-${{ steps.commit.outputs.hash }}
           path: build/libs/*.jar
           retention-days: 7
 
@@ -63,7 +63,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: dev-build
-          name: "LPC Latest Dev Build (main)"
+          name: "JoehesLPC Latest Dev Build (main)"
           body: "This release is automatically updated on every push to the `main` branch. Active commit: ${{ steps.commit.outputs.hash }}"
           prerelease: true
           files: build/libs/*.jar

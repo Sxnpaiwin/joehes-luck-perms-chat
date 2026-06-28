@@ -9,7 +9,7 @@
 
 # joehes-luck-perms-chat ＼(≧▽≦)／
 
-A modern, highly-optimized fork of **LPC (LuckPerms Chat Formatter)** natively targeting Minecraft **1.21+** (including `1.21.11`) with critical formatting and style bugfixes.
+A modern, highly-optimized fork of **JoehesLPC (LuckPerms Chat Formatter)** natively targeting Minecraft **1.21+** (including `1.21.11`) with critical formatting and style bugfixes.
 
 ---
 
@@ -43,7 +43,7 @@ A modern, highly-optimized fork of **LPC (LuckPerms Chat Formatter)** natively t
 - **MiniMessage Format**: Complete MiniMessage support with group- and track-specific formats.
 - **Social Upgrades**: Mention pings, clickable links, and customizable emoji shortcuts (e.g. `:heart:` → ❤).
 - **Integrated Moderation**: Toggleable anti-spam cooldown, repeated-message blocker, caps filter, profanity filter, and anti-advertising.
-- **Integrated Mutes**: Full mute system with `/lpc mute <player>` supporting custom durations.
+- **Integrated Mutes**: Full mute system with `/joeheslpc mute <player>` supporting custom durations.
 
 ---
 
@@ -51,11 +51,11 @@ A modern, highly-optimized fork of **LPC (LuckPerms Chat Formatter)** natively t
 
 | Command | Permission | Description |
 |---|---|---|
-| `/lpc reload` | `lpc.reload` | Reloads the configuration |
-| `/lpc version` | – | Shows the current installed version |
-| `/lpc help` | – | Displays available commands |
-| `/lpc mute <player> [duration]` | `lpc.mute` | Mutes a player (e.g. `10m`, `2h`, or permanent) |
-| `/lpc unmute <player>` | `lpc.mute` | Unmutes a player |
+| `/joeheslpc reload` | `joeheslpc.reload` | Reloads the configuration |
+| `/joeheslpc version` | – | Shows the current installed version |
+| `/joeheslpc help` | – | Displays available commands |
+| `/joeheslpc mute <player> [duration]` | `joeheslpc.mute` | Mutes a player (e.g. `10m`, `2h`, or permanent) |
+| `/joeheslpc unmute <player>` | `joeheslpc.mute` | Unmutes a player |
 
 ---
 
@@ -77,17 +77,17 @@ track-formats:
 # Enable the [item] placeholder
 use-item-placeholder: true
 
-# Allow <gradient> / <rainbow> for players with lpc.chatcolor
+# Allow <gradient> / <rainbow> for players with joeheslpc.chatcolor
 allow-gradient-tags: true
 
-# Worlds where LPC does NOT format chat
+# Worlds where JoehesLPC does NOT format chat
 disabled-worlds: []
 
 # Check Modrinth for updates on startup
 update-checker: true
 
 # Reload message
-reload-message: "<green>Reloaded LPC configuration!"
+reload-message: "<green>Reloaded JoehesLPC configuration!"
 ```
 
 ---
@@ -96,5 +96,5 @@ reload-message: "<green>Reloaded LPC configuration!"
 
 ```bash
 ./gradlew shadowJar
-# output: build/libs/LPC-1.21.11.jar
+# output: build/libs/JoehesLPC-1.21.11.jar
 ```

@@ -1,5 +1,5 @@
 # ┌─────────────────────────────────────────────────────────────────────┐
-# │  LPC – LuckPerms Chat Formatter                                       │
+# │  JoehesLPC – LuckPerms Chat Formatter                                       │
 # │  MiniMessage powered. See https://docs.advntr.dev/minimessage/        │
 # └─────────────────────────────────────────────────────────────────────┘
 #
@@ -36,22 +36,22 @@ track-formats:
 #  donator_track: "<aqua>[Donator]</aqua> {name}<dark_gray> »<reset> {message}"
 
 # Enable the [item] placeholder (shows the held item, with a hover tooltip on Paper).
-# Requires the 'lpc.itemplaceholder' permission.
+# Requires the 'joeheslpc.itemplaceholder' permission.
 use-item-placeholder: true
 
-# Allow players with 'lpc.chatcolor' to use <gradient> and <rainbow> tags in their messages.
+# Allow players with 'joeheslpc.chatcolor' to use <gradient> and <rainbow> tags in their messages.
 # Cosmetic colour/decoration tags are always allowed for that permission. Interactive tags
 # (click, hover, insertion, ...) are NEVER honoured in player messages, for security.
 allow-gradient-tags: true
 
-# Worlds in which LPC will NOT format chat (left to vanilla / other plugins).
+# Worlds in which JoehesLPC will NOT format chat (left to vanilla / other plugins).
 disabled-worlds: []
 
-# Check Modrinth for new versions on startup and notify players with 'lpc.update' on join.
+# Check Modrinth for new versions on startup and notify players with 'joeheslpc.update' on join.
 update-checker: true
 
-# Message shown after running '/lpc reload'.
-reload-message: "<green>Reloaded LPC configuration!"
+# Message shown after running '/jlpc reload'.
+reload-message: "<green>Reloaded JoehesLPC configuration!"
 
 # ─────────────────────────────────────────────────────────────────────────
 #  @Mention pings — highlight online player names; ping them (sound + action
@@ -77,7 +77,7 @@ mentions:
 # ─────────────────────────────────────────────────────────────────────────
 emoji:
   enabled: true
-  # When true, only players with 'lpc.emoji' get emoji replacement.
+  # When true, only players with 'joeheslpc.emoji' get emoji replacement.
   require-permission: false
   replacements:
     ":heart:": "❤"
@@ -89,7 +89,7 @@ emoji:
 
 # ─────────────────────────────────────────────────────────────────────────
 #  URL linkification — make links clickable (Paper) / coloured (Spigot).
-#  Requires the 'lpc.chatlinks' permission. openUrl only, never run_command.
+#  Requires the 'joeheslpc.chatlinks' permission. openUrl only, never run_command.
 # ─────────────────────────────────────────────────────────────────────────
 link-urls:
   enabled: true
@@ -147,7 +147,7 @@ death-messages:
 
 # ─────────────────────────────────────────────────────────────────────────
 #  Moderation — runs before formatting. Master switch; each filter also has
-#  its own toggle. Bypass with lpc.bypass.<spam|repeat|caps|profanity|advert>.
+#  its own toggle. Bypass with joeheslpc.bypass.<spam|repeat|caps|profanity|advert>.
 # ─────────────────────────────────────────────────────────────────────────
 moderation:
   enabled: false
@@ -190,12 +190,12 @@ anti-advert:
 # ─────────────────────────────────────────────────────────────────────────
 #  Mute — block chat for muted players. A player is muted if they hold the
 #  permission node below (set by a punishment plugin) or are temp-muted via
-#  /lpc mute <player> [duration].
+#  /jlpc mute <player> [duration].
 # ─────────────────────────────────────────────────────────────────────────
 mute:
   enabled: false
   enable-commands: true
-  permission-node: "lpc.muted"
+  permission-node: "joeheslpc.muted"
   message: "<red>You are currently muted."
 
 # Internal config version. Do not edit.

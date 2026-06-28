@@ -1,20 +1,21 @@
-name: LPC
+name: JoehesLPC
 version: '${version}'
-main: de.ayont.lpc.LPC
+main: de.joehe.lpc.JoehesLPC
 api-version: '1.21'
 folia-supported: true
 authors: [Sxnpaiwin, Joehe, "modrinth.com/user/Sxnpaiwin"]
 depend: [LuckPerms]
 softdepend: [PlaceholderAPI]
-description: Flexible MiniMessage chat formatter for LuckPerms (Minecraft 1.21.11 / Java 25)
-website: https://modrinth.com/plugin/lpc-chat
+description: Flexible MiniMessage chat formatter for LuckPerms (Minecraft 1.21+ / Java 25)
+website: https://github.com/Sxnpaiwin/joehes-luck-perms-chat
 commands:
-  lpc:
-    description: LPC chat formatter commands.
-    usage: "Usage: /lpc <reload|version|help>"
+  jlpc:
+    description: JoehesLPC chat formatter commands.
+    usage: "Usage: /jlpc <reload|version|help>"
+    aliases: [lpc, joeheslpc]
 permissions:
   lpc.reload:
-    description: Allows reloading the LPC configuration.
+    description: Allows reloading the JoehesLPC configuration.
     default: op
   lpc.chatcolor:
     description: Allows using colour codes and cosmetic MiniMessage tags in chat.
