@@ -8,8 +8,6 @@ import de.joehe.lpc.commands.JoehesLPCCommand;
 import de.joehe.lpc.listener.AsyncChatListener;
 import de.joehe.lpc.listener.ConnectionListener;
 import de.joehe.lpc.listener.SpigotChatListener;
-import de.joehe.lpc.moderation.ModerationService;
-import de.joehe.lpc.moderation.MuteService;
 import de.joehe.lpc.scheduler.Scheduler;
 import de.joehe.lpc.scheduler.Schedulers;
 import de.joehe.lpc.update.UpdateChecker;
@@ -33,8 +31,6 @@ public final class JoehesLPC extends JavaPlugin {
     private boolean folia;
     private Scheduler scheduler;
     private ChatFormatService chatFormatService;
-    private MuteService muteService;
-    private ModerationService moderationService;
     private EmojiReplacer emojiReplacer;
     private UrlLinkifier urlLinkifier;
     private MentionService mentionService;
@@ -50,8 +46,6 @@ public final class JoehesLPC extends JavaPlugin {
         this.folia = detectFolia();
         this.scheduler = Schedulers.create(this);
         this.chatFormatService = new ChatFormatService(this);
-        this.muteService = new MuteService(this);
-        this.moderationService = new ModerationService(this, muteService);
         this.emojiReplacer = new EmojiReplacer(this);
         this.urlLinkifier = new UrlLinkifier(this);
         this.mentionService = new MentionService(this);
@@ -83,14 +77,6 @@ public final class JoehesLPC extends JavaPlugin {
         return chatFormatService;
     }
 
-    public ModerationService getModerationService() {
-        return moderationService;
-    }
-
-    public MuteService getMuteService() {
-        return muteService;
-    }
-
     public EmojiReplacer getEmojiReplacer() {
         return emojiReplacer;
     }
@@ -106,8 +92,6 @@ public final class JoehesLPC extends JavaPlugin {
     /** Re-reads config-derived state for every service. Call after {@code reloadConfig()}. */
     public void reloadServices() {
         chatFormatService.reload();
-        muteService.reload();
-        moderationService.reload();
         emojiReplacer.reload();
         urlLinkifier.reload();
         mentionService.reload();

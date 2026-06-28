@@ -4,7 +4,6 @@ import de.joehe.lpc.JoehesLPC;
 import de.joehe.lpc.chat.ChatFormatService;
 import de.joehe.lpc.chat.ItemPlaceholder;
 import de.joehe.lpc.chat.MentionService;
-import de.joehe.lpc.moderation.ModResult;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -34,18 +33,8 @@ public class AsyncChatListener implements Listener {
         }
 
         String raw = PlainTextComponentSerializer.plainText().serialize(event.message());
-        ModResult moderation = plugin.getModerationService().process(player, raw);
-        if (moderation.isBlocked()) {
-            event.setCancelled(true);
-            if (moderation.notice() != null) {
-                plugin.send(player, moderation.notice());
-            }
-            return;
-        }
-        String effectiveRaw = moderation.action() == ModResult.Action.TRANSFORM ? moderation.text() : raw;
-
         boolean allowColor = player.hasPermission("JoehesLPC.chatcolor");
-        Component base = service.messageComponent(effectiveRaw, allowColor);
+        Component base = service.messageComponent(raw, allowColor);
         base = plugin.getEmojiReplacer().apply(player, base);
         base = plugin.getUrlLinkifier().apply(player, base, true);
 

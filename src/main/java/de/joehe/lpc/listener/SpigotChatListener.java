@@ -4,7 +4,6 @@ import de.joehe.lpc.JoehesLPC;
 import de.joehe.lpc.chat.ChatFormatService;
 import de.joehe.lpc.chat.ItemPlaceholder;
 import de.joehe.lpc.chat.MentionService;
-import de.joehe.lpc.moderation.ModResult;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,18 +34,8 @@ public class SpigotChatListener implements Listener {
             return;
         }
 
-        ModResult moderation = plugin.getModerationService().process(player, event.getMessage());
-        if (moderation.isBlocked()) {
-            event.setCancelled(true);
-            if (moderation.notice() != null) {
-                plugin.send(player, moderation.notice());
-            }
-            return;
-        }
-        String effectiveRaw = moderation.action() == ModResult.Action.TRANSFORM ? moderation.text() : event.getMessage();
-
         boolean allowColor = player.hasPermission("JoehesLPC.chatcolor");
-        Component base = service.messageComponent(effectiveRaw, allowColor);
+        Component base = service.messageComponent(event.getMessage(), allowColor);
         base = plugin.getEmojiReplacer().apply(player, base);
         base = plugin.getUrlLinkifier().apply(player, base, false);
 

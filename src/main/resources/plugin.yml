@@ -35,24 +35,3 @@ permissions:
   lpc.mention.exempt:
     description: Opt out of receiving mention pings.
     default: false
-  lpc.mute:
-    description: Use /lpc mute and /lpc unmute.
-    default: op
-  lpc.muted:
-    description: Marks a player as muted (usually granted by a punishment plugin).
-    default: false
-  lpc.bypass.spam:
-    description: Bypass the anti-spam cooldown.
-    default: op
-  lpc.bypass.repeat:
-    description: Bypass the repeated-message filter.
-    default: op
-  lpc.bypass.caps:
-    description: Bypass the caps filter.
-    default: op
-  lpc.bypass.profanity:
-    description: Bypass the profanity filter.
-    default: op
-  lpc.bypass.advert:
-    description: Bypass the anti-advertising filter.
-    default: op

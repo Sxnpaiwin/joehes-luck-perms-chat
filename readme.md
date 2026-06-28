@@ -42,8 +42,6 @@
 
 *   **💬 Modern Chat Formatting**: Full [MiniMessage](https://docs.advntr.dev/minimessage/format.html) rendering engine with group and track formats.
 *   **👥 Social System**: Interactive `@Mention` pings (sound/action-bar on Paper), clickable `openUrl` links, and configurable text-to-glyph emoji shortcuts (e.g., `:heart:` → ❤).
-*   **🛡️ Moderation Toolkit**: Anti-spam cooldowns, repeated-message blockers, caps filters, profanity filters, and anti-advertising safeguards.
-*   **🔇 Integrated Mute System**: Fully managed local temp-mutes and permanent mutes with `/jlpc mute`.
 
 ---
 
@@ -91,8 +89,6 @@ reload-message: "<green>Reloaded JoehesLPC configuration!"
 | `/jlpc reload` | `joeheslpc.reload` | Reloads the configuration |
 | `/jlpc version` | – | Shows the current installed version |
 | `/jlpc help` | – | Displays available commands |
-| `/jlpc mute <player> [duration]` | `joeheslpc.mute` | Mutes a player (e.g. `10m`, `2h`, or permanent) |
-| `/jlpc unmute <player>` | `joeheslpc.mute` | Unmutes a player |
 
 *Note: The command supports aliases `/lpc` and `/joeheslpc` for legacy compatibility.*
 
