@@ -3,7 +3,7 @@ version: '${version}'
 main: de.ayont.lpc.LPC
 api-version: '1.21'
 folia-supported: true
-authors: [Ayont, Varilx-Development]
+authors: [Ayont, Varilx-Development, "https://modrinth.com/user/Sxnpaiwin"]
 depend: [LuckPerms]
 softdepend: [PlaceholderAPI]
 description: Flexible MiniMessage chat formatter for LuckPerms (Minecraft 1.21.11 / Java 25)
