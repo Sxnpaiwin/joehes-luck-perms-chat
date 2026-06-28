@@ -1,6 +1,6 @@
 # joehes-luck-perms-chat ✨
 
-A modern, highly-optimized fork of **LPC (LuckPerms Chat Formatter)** updated to natively target Minecraft **1.21.11** with major bug fixes and formatting improvements.
+A modern, highly-optimized fork of **LPC (LuckPerms Chat Formatter)** updated to natively target Minecraft **1.21.11** and fully forward-compatible with all newer versions (**1.21+**), featuring major bug fixes and formatting improvements.
 
 ---
 
@@ -16,7 +16,7 @@ A modern, highly-optimized fork of **LPC (LuckPerms Chat Formatter)** updated to
 
 | Component | Target / Requirement |
 |---|---|
-| **Minecraft** | `1.21.11` |
+| **Minecraft** | `1.21` and all newer versions (`1.21+`) |
 | **Server** | Paper, Folia, or Spigot |
 | **Java** | `25+` |
 
