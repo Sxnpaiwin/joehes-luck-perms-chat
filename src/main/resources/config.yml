@@ -1,84 +1,121 @@
-# ┌─────────────────────────────────────────────────────────────────────┐
-# │  JoehesLPC – LuckPerms Chat Formatter                                       │
-# │  MiniMessage powered. See https://docs.advntr.dev/minimessage/        │
-# └─────────────────────────────────────────────────────────────────────┘
-#
-# Set up LuckPerms meta first:
-# https://luckperms.net/wiki/Prefixes,-Suffixes-&-Meta
-#
-# Placeholders usable in formats:
-#   {message}         - the chat message (inserted safely, never re-parsed)
-#   {name}            - the player's name
-#   {displayname}     - the player's display name / nickname
-#   {gradient-name}   - the player's name wrapped in their rank gradient (see gradient-names)
-#   {world}           - the player's current world
-#   {prefix}          - the highest priority prefix
-#   {suffix}          - the highest priority suffix
-#   {prefixes}        - all prefixes, highest priority first
-#   {suffixes}        - all suffixes, highest priority first
-#   {username-color}  - the 'username-color' LuckPerms meta value
-#   {message-color}   - the 'message-color' LuckPerms meta value
-#
-# NOTE: Prefixes, suffixes and colors must use MiniMessage, not legacy (&a / §b) codes.
-# PlaceholderAPI placeholders (%...%) are supported inside formats when PlaceholderAPI is installed.
+# ┌────────────────────────────────────────────────────────────────────────────────────────┐
+# │  ✨ JoehesLPC – The Ultimate, Ultra-Optimized LuckPerms Chat Formatter ✨              │
+# │                                                                                        │
+# │  Designed for hyper-performance, zero style leaks, and native MiniMessage parsing.    │
+# │  Wiki & Docs: https://github.com/Sxnpaiwin/joehes-luck-perms-chat                     │
+# └────────────────────────────────────────────────────────────────────────────────────────┘
 
-# Main chat format.
-chat-format: "{prefix}{name}<dark_gray> »<reset> {message}"
+# 💡 QUICK START: SETTING UP LUCKPERMS
+# To set up prefixes and suffixes in LuckPerms, use the following commands:
+#   - Group Prefix:   /lp group <group> meta setprefix "<red>[Admin] "
+#   - Group Suffix:   /lp group <group> meta setsuffix "<gray>[VIP]"
+#   - User Prefix:    /lp user <player> meta setprefix "<blue>[Builder] "
+#
+# ℹ️ IMPORTANCE OF MINIMESSAGE TAGS:
+# Any prefix, suffix, and metadata must use native MiniMessage tag strings instead of legacy
+# color symbols like '&a' or '§b' for optimal performance and native Minecraft UI rendering.
+# (e.g., use "<red>[Prefix]</red>" instead of "&c[Prefix]").
+#
+# 📦 CHAT PLACEHOLDERS:
+# You can use the following dynamic placeholders in your chat formats:
+#   - {message}          » The player's safe chat message (injected safely, secure from exploits).
+#   - {name}             » The player's standard Minecraft username.
+#   - {displayname}      » The player's active nickname / display name.
+#   - {prefix}           » The player's highest priority LuckPerms prefix.
+#   - {suffix}           » The player's highest priority LuckPerms suffix.
+#   - {prefixes}         » A space-separated list of all prefixes active on the player (sorted).
+#   - {suffixes}         » A space-separated list of all suffixes active on the player (sorted).
+#   - {world}            » The name of the player's current Minecraft world.
+#   - {gradient-name}    » The player's username styled with their rank's custom gradient.
+#   - {username-color}   » The custom 'username-color' metadata value set in LuckPerms.
+#   - {message-color}    » The custom 'message-color' metadata value set in LuckPerms.
+#
+# 🔌 PLACEHOLDERAPI SUPPORT:
+# Any PlaceholderAPI variables (like %player_ping%, %server_ram%, etc.) are fully supported and
+# resolved dynamically inside your chat formats when the PlaceholderAPI plugin is active!
 
-# Per-group formats (optional). Remove the leading '#' to enable.
+# ─────────────────────────────────────────────────────────────────────────────────────────
+#  💬 Main Chat Layout
+# ─────────────────────────────────────────────────────────────────────────────────────────
+
+# The default formatting template applied to player chat messages.
+# Uses MiniMessage tags (e.g., <dark_gray>, <reset>).
+chat-format: "{prefix}{name}{suffix}<dark_gray> »<reset> {message}"
+
+# Per-Group Formatting (Optional)
+# If enabled, members of the specified LuckPerms group will use this custom template.
+# Simply remove the '#' character to activate a custom group format.
 group-formats:
 #  default: "<gray>[User]</gray> {name}<dark_gray> »<reset> {message}"
 #  admin: "<red>[Admin]</red> {name}<dark_gray> »<reset> {message}"
 
-# Per-track formats (optional). Group formats take priority over track formats.
+# Per-Track Formatting (Optional)
+# Group formats always take priority over Track formats.
 track-formats:
 #  staff_track: "<gold>[Staff]</gold> {name}<dark_gray> »<reset> {message}"
-#  donator_track: "<aqua>[Donator]</aqua> {name}<dark_gray> »<reset> {message}"
 
-# Enable the [item] placeholder (shows the held item, with a hover tooltip on Paper).
-# Requires the 'joeheslpc.itemplaceholder' permission.
+# ─────────────────────────────────────────────────────────────────────────────────────────
+#  ⚙️ General Settings
+# ─────────────────────────────────────────────────────────────────────────────────────────
+
+# Enable the special '[item]' placeholder.
+# When a player types [item] in chat, it will display the item currently held in their main hand
+# as a neat clickable token with a detailed item details tooltip (hover support on Paper).
+# Requires the 'joeheslpc.itemplaceholder' permission to use.
 use-item-placeholder: true
 
-# Allow players with 'joeheslpc.chatcolor' to use <gradient> and <rainbow> tags in their messages.
-# Cosmetic colour/decoration tags are always allowed for that permission. Interactive tags
-# (click, hover, insertion, ...) are NEVER honoured in player messages, for security.
+# Allow cosmetic formatting tags for players with the 'joeheslpc.chatcolor' permission.
+# When true, authorized players can use tags like <gradient>, <rainbow>, and basic color codes
+# (or legacy '&' colors) in their chat messages. Interactive tags (click/hover) are ALWAYS
+# stripped from player inputs to prevent server security exploits.
 allow-gradient-tags: true
 
-# Worlds in which JoehesLPC will NOT format chat (left to vanilla / other plugins).
+# Worlds where JoehesLPC should completely bypass and NOT format chat.
+# Useful if you want other chat plugins or vanilla formatting to handle specific worlds.
+# Example: disabled-worlds: [ "creative", "lobbies" ]
 disabled-worlds: []
 
-# Check Modrinth for new versions on startup and notify players with 'joeheslpc.update' on join.
+# Check Modrinth for new versions on startup and notify administrators with the 'joeheslpc.update'
+# permission when logging into the server.
 update-checker: true
 
-# Message shown after running '/jlpc reload'.
+# The confirmation message printed after executing '/jlpc reload'.
 reload-message: "<green>Reloaded JoehesLPC configuration!"
 
-# ─────────────────────────────────────────────────────────────────────────
-#  @Mention pings — highlight online player names; ping them (sound + action
-#  bar on Paper). Highlight only on Spigot.
-# ─────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────────────────
+#  🔊 @Mention Pings
+# ─────────────────────────────────────────────────────────────────────────────────────────
+# Automatically highlight mentioned player names in chat, and ping them with action bar alerts
+# and customized pickup sounds!
 mentions:
+  # Enable or disable the mention engine completely.
   enabled: true
-  # Require an @ before the name to count as a mention.
+  # Require players to prefix a name with '@' to count as a mention (e.g. '@Sxnpaiwin').
   require-at-symbol: false
-  # How the matched name is rendered. <name> is replaced with the player's name.
+  # How the highlighted username is rendered in chat for the viewers.
   highlight-format: "<gold>@<name></gold>"
-  # Maximum number of names highlighted per message.
+  # Safety cap: maximum number of individual players that can be mentioned in a single message.
   max-mentions-per-message: 5
-  # Action bar shown to a mentioned player (Paper). <sender> = who mentioned them.
+  # The action-bar alert text shown to the mentioned player (Paper only).
   actionbar-text: "<gold>You were mentioned by <white><sender></white>"
-  # Namespaced sound played to mentioned players.
+  # The sound played to the mentioned player. Must be a valid Minecraft sound key.
+  # (e.g., 'entity.experience_orb.pickup', 'block.note_block.bell', 'entity.player.levelup').
   ping-sound: "entity.experience_orb.pickup"
+  # Volume (0.0 to 1.0) and Pitch (0.5 to 2.0) of the ping sound.
   ping-volume: 1.0
   ping-pitch: 1.0
 
 # ─────────────────────────────────────────────────────────────────────────
-#  Emoji / shortcut replacement — replace text shortcuts with glyphs.
+#  😀 Emoji Replacements
 # ─────────────────────────────────────────────────────────────────────────
+# Replace standard text-shortcuts with expressive unicode glyphs in real-time.
 emoji:
+  # Enable or disable emoji shortcuts completely.
   enabled: true
-  # When true, only players with 'joeheslpc.emoji' get emoji replacement.
+  # When true, only players with the 'joeheslpc.emoji' permission can use emoji shortcuts.
+  # When false, everyone on the server can use them!
   require-permission: false
+  # Fully customizable key-value shortcut map.
   replacements:
     ":heart:": "❤"
     ":star:": "★"
@@ -88,22 +125,29 @@ emoji:
     ":note:": "♪"
 
 # ─────────────────────────────────────────────────────────────────────────
-#  URL linkification — make links clickable (Paper) / coloured (Spigot).
-#  Requires the 'joeheslpc.chatlinks' permission. openUrl only, never run_command.
+#  🔗 URL Linkification
 # ─────────────────────────────────────────────────────────────────────────
+# Automatically turns web links in chat into clickable, styled hyperlinks.
+# Requires the 'joeheslpc.chatlinks' permission to use.
 link-urls:
+  # Turn on web links in chat.
   enabled: true
+  # The MiniMessage styling applied to the link (clickable on Paper, colored on Spigot).
   style: "<blue><underlined>"
+  # The hover tooltip displayed when hovering over the web link (Paper only).
   hover-text: "<gray>Open link"
+  # Allowed URL protocol schemes.
   allowed-schemes:
     - http
     - https
+  # Safety cap: maximum character length of the link before it is truncated.
   max-length: 200
 
 # ─────────────────────────────────────────────────────────────────────────
-#  Per-rank message styling — colour/decorate the player's OWN words by rank
-#  WITHOUT giving them MiniMessage power. {message} is the player's message.
+#  👑 Per-Rank Message Styles
 # ─────────────────────────────────────────────────────────────────────────
+# Automatically style and color the player's OWN words based on their LuckPerms rank,
+# WITHOUT giving them MiniMessage formatting permissions!
 message-styles:
   enabled: false
 group-message-styles:
@@ -111,14 +155,15 @@ group-message-styles:
 #  donator: "<light_purple>{message}</light_purple>"
 track-message-styles:
 #  staff_track: "<aqua>{message}</aqua>"
-# Applied when no group/track style matches (leave empty for none).
+# The fallback style applied if no group or track styles are matched (empty for normal).
 default-message-style: ""
 
 # ─────────────────────────────────────────────────────────────────────────
-#  Gradient names — wrap {gradient-name} in a per-rank gradient. The gradient
-#  spec comes from a LuckPerms meta value (e.g. '#B754F4:#FC00FF') or the
-#  per-group fallback below.
+#  🎨 Gradient Names
 # ─────────────────────────────────────────────────────────────────────────
+# Style the player's {gradient-name} placeholder with a per-rank custom gradient.
+# The gradient specification is retrieved from their LuckPerms metadata node (e.g. '#B754F4:#FC00FF')
+# or falls back to the group-name-gradients list below.
 gradient-names:
   enabled: false
   default-meta-key: "username-gradient"
@@ -127,9 +172,10 @@ group-name-gradients:
 #  donator: "#B754F4:#FC00FF"
 
 # ─────────────────────────────────────────────────────────────────────────
-#  Join / Quit / First-join / Death messages (MiniMessage). Leave a format
-#  empty to suppress that message entirely.
+#  👋 Server Connection & Death Messages
 # ─────────────────────────────────────────────────────────────────────────
+# Customize server-wide join, quit, and death alerts using MiniMessage.
+# Keep the format empty (e.g. "") to completely suppress that specific message.
 join-messages:
   enabled: false
   format: "<dark_gray>[<green>+</green>] {prefix}{name}"
@@ -141,9 +187,9 @@ quit-messages:
   format: "<dark_gray>[<red>-</red>] {prefix}{name}"
 death-messages:
   enabled: false
-  # <death-message> is the vanilla death cause.
+  # <death-message> placeholder is replaced with the vanilla death cause.
   format: "<gray>☠ <death-message>"
   show-vanilla-cause: true
 
-# Internal config version. Do not edit.
+# 🚨 INTERNAL CONFIG VERSION - DO NOT TOUCH!
 config-version: 3

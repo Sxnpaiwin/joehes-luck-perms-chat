@@ -12,12 +12,20 @@ import de.joehe.lpc.scheduler.Scheduler;
 import de.joehe.lpc.scheduler.Schedulers;
 import de.joehe.lpc.update.UpdateChecker;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class JoehesLPC extends JavaPlugin {
 
@@ -45,6 +53,10 @@ public final class JoehesLPC extends JavaPlugin {
         this.paper = detectPaper();
         this.folia = detectFolia();
         this.scheduler = Schedulers.create(this);
+
+        // Validate configuration on startup
+        validateAndLoadConfig(getServer().getConsoleSender());
+
         this.chatFormatService = new ChatFormatService(this);
         this.emojiReplacer = new EmojiReplacer(this);
         this.urlLinkifier = new UrlLinkifier(this);
@@ -170,6 +182,94 @@ public final class JoehesLPC extends JavaPlugin {
             return true;
         } catch (ClassNotFoundException notFolia) {
             return false;
+        }
+    }
+
+    /**
+     * Validates the configuration file on disk for YAML syntax errors and MiniMessage parsing errors.
+     *
+     * @param sender the command sender to report errors to (or ConsoleSender)
+     * @return true if the configuration is fully valid; false otherwise
+     */
+    public boolean validateAndLoadConfig(CommandSender sender) {
+        File configFile = new File(getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            return true; // No file, nothing to validate
+        }
+
+        // 1. Check YAML syntax by loading manually first
+        YamlConfiguration testConfig = new YamlConfiguration();
+        try {
+            testConfig.load(configFile);
+        } catch (Exception e) {
+            String errorMsg = e.getMessage();
+            send(sender, MiniMessage.miniMessage().deserialize("<red>❌ Invalid YAML syntax in config.yml! Error details: <white>" + errorMsg));
+            return false;
+        }
+
+        // 2. Perform semantic and MiniMessage syntax validation on the new config
+        List<String> errors = new ArrayList<>();
+
+        validateTemplate(testConfig.getString("chat-format"), "chat-format", true, errors);
+
+        ConfigurationSection groupFormats = testConfig.getConfigurationSection("group-formats");
+        if (groupFormats != null) {
+            for (String key : groupFormats.getKeys(false)) {
+                validateTemplate(groupFormats.getString(key), "group-formats." + key, true, errors);
+            }
+        }
+
+        ConfigurationSection trackFormats = testConfig.getConfigurationSection("track-formats");
+        if (trackFormats != null) {
+            for (String key : trackFormats.getKeys(false)) {
+                validateTemplate(trackFormats.getString(key), "track-formats." + key, true, errors);
+            }
+        }
+
+        validateTemplate(testConfig.getString("mentions.highlight-format"), "mentions.highlight-format", false, errors);
+        validateTemplate(testConfig.getString("mentions.actionbar-text"), "mentions.actionbar-text", false, errors);
+        validateTemplate(testConfig.getString("link-urls.style"), "link-urls.style", false, errors);
+        validateTemplate(testConfig.getString("reload-message"), "reload-message", false, errors);
+
+        if (testConfig.getBoolean("join-messages.enabled", false)) {
+            validateTemplate(testConfig.getString("join-messages.format"), "join-messages.format", false, errors);
+            if (testConfig.getBoolean("join-messages.first-join.enabled", false)) {
+                validateTemplate(testConfig.getString("join-messages.first-join.format"), "join-messages.first-join.format", false, errors);
+            }
+        }
+        if (testConfig.getBoolean("quit-messages.enabled", false)) {
+            validateTemplate(testConfig.getString("quit-messages.format"), "quit-messages.format", false, errors);
+        }
+        if (testConfig.getBoolean("death-messages.enabled", false)) {
+            validateTemplate(testConfig.getString("death-messages.format"), "death-messages.format", false, errors);
+        }
+
+        // If there were any errors, print them clearly and report failure
+        if (!errors.isEmpty()) {
+            send(sender, MiniMessage.miniMessage().deserialize("<red>❌ Configuration validation failed! Please fix the following:"));
+            for (String err : errors) {
+                send(sender, MiniMessage.miniMessage().deserialize("<dark_gray>- <yellow>" + err));
+            }
+            return false;
+        }
+
+        return true;
+    }
+
+    private void validateTemplate(String template, String path, boolean requireMessageToken, List<String> errors) {
+        if (template == null || template.isEmpty()) {
+            return;
+        }
+        // Test if MiniMessage can parse the string cleanly
+        try {
+            MiniMessage.miniMessage().deserialize(template);
+        } catch (Exception e) {
+            errors.add(path + ": Invalid MiniMessage tags (" + e.getMessage() + ")");
+        }
+
+        // Verify if required token {message} is present
+        if (requireMessageToken && !template.contains("{message}")) {
+            errors.add(path + ": Missing required placeholder `{message}`");
         }
     }
 }

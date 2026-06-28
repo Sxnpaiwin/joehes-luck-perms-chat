@@ -45,6 +45,10 @@ public class JoehesLPCCommand implements CommandExecutor, TabCompleter {
             plugin.send(sender, mini("<red>You don't have permission to do that."));
             return;
         }
+        if (!plugin.validateAndLoadConfig(sender)) {
+            plugin.send(sender, mini("<red>⚠️ Configuration was not reloaded due to errors. Active configuration remains unchanged."));
+            return;
+        }
         plugin.reloadConfig();
         plugin.reloadServices();
         String raw = plugin.getConfig().getString("reload-message", "<green>Reloaded JoehesLPC configuration!");
