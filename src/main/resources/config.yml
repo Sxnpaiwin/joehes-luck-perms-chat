@@ -1,5 +1,5 @@
 # ┌─────────────────────────────────────────────────────────────────────┐
-# │  JoehesLPC – LuckPerms Chat Formatter                                       │
+# │  JoehesLPC – LuckPerms Chat Formatter                                 │
 # │  MiniMessage powered. See https://docs.advntr.dev/minimessage/        │
 # └─────────────────────────────────────────────────────────────────────┘
 #
@@ -23,12 +23,13 @@
 # PlaceholderAPI placeholders (%...%) are supported inside formats when PlaceholderAPI is installed.
 
 # Main chat format.
-chat-format: "{prefix}{name}<dark_gray> »<reset> {message}"
+chat-format: "{prefix}{name}{suffix}<dark_gray> » <reset>{message}"
 
 # Per-group formats (optional). Remove the leading '#' to enable.
 group-formats:
 #  default: "<gray>[User]</gray> {name}<dark_gray> »<reset> {message}"
 #  admin: "<red>[Admin]</red> {name}<dark_gray> »<reset> {message}"
+  vip: "<yellow>⭐</yellow>{prefix}{name}{suffix} » <reset>{message}"
 
 # Per-track formats (optional). Group formats take priority over track formats.
 track-formats:
@@ -105,8 +106,9 @@ link-urls:
 #  WITHOUT giving them MiniMessage power. {message} is the player's message.
 # ─────────────────────────────────────────────────────────────────────────
 message-styles:
-  enabled: false
+  enabled: true
 group-message-styles:
+  vip: "<yellow>{message}</yellow>"
 #  admin: "<red>{message}</red>"
 #  donator: "<light_purple>{message}</light_purple>"
 track-message-styles:
