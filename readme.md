@@ -15,15 +15,13 @@
 [![Minecraft Support](https://img.shields.io/badge/Minecraft-1.21+-red?style=for-the-badge&logo=minecraft&logoColor=white)](#)
 [![Java Version](https://img.shields.io/badge/Java-25%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](#)
 [![License](https://img.shields.io/github/license/Sxnpaiwin/joehes-luck-perms-chat?style=for-the-badge&color=blue)](#)
-[![Modrinth Page](https://img.shields.io/badge/Modrinth-JoehesLPC-00C853?style=for-the-badge&logo=modrinth&logoColor=white)](https://modrinth.com/user/Sxnpaiwin)
+[![Modrinth Page](https://img.shields.io/badge/Modrinth-JoehesLPC-00C853?style=for-the-badge&logo=modrinth&logoColor=white)](https://modrinth.com/plugin/luck-perms-chat)
 
 ---
 
 </div>
 
 ## 🧩 Compatibility (｀・ω・´)
-
-| Component | Target / Requirement |
 
 | Component | Target / Requirement |
 |---|---|
