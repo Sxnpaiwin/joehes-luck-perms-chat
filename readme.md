@@ -18,8 +18,8 @@
   </a>
 </p>
 
-# LPC – LuckPerms Chat Formatter ✨
-**A flexible chat formatting plugin with MiniMessage support for LuckPerms**
+# LPC – LuckPerms Chat Formatter ✨ (joehes fork)
+**A flexible chat formatting plugin with MiniMessage support for LuckPerms (joehes fork that fixes bugs and supports 1.21.11)**
 
 > Modern chat formatting powered by [MiniMessage](https://docs.advntr.dev/minimessage/format.html), full LuckPerms metadata support, group/track formats, and PlaceholderAPI.
 
